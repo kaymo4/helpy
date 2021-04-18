@@ -78,9 +78,9 @@ Helpy leverages two external services to help out:
 - Google Analytics for stats (optional)
 
 
-Contributing
+Testing
 ============
-
+Apr 18 - first pull
 
 License
 =======
