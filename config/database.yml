@@ -1,22 +1,21 @@
 default: &default
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
 
 development:
   <<: *default
-  database: helpy_development
+  #database: kaymodev
+  database: helpy_production_bk2
   port: 5432
   host: localhost
+  user: kaymo
 
 test:
   <<: *default
-  database: helpy_test
+  database: kaymotest
+  user: kaymo
 
-production:
-  <<: *default
-  database: helpy_production
-  username: helpy
-  password: <%= ENV['helpy_DATABASE_PASSWORD'] %>
+
