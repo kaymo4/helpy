@@ -59,7 +59,8 @@
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-2 text-right">
 						<ul class="list-inline" data-hook="header-mini-nav">
-							<%= content_tag :li, link_to(t(:ask_a_question), new_topic_path), data: { hook: 'question_nav' }, class: 'hidden-xs' if forums? || tickets? %>
+							<%#= KM hard coded context for ticket name t(:ask_a_question) => "Start an Activity" %>
+							<%= content_tag :li, link_to("Start an Activity", new_topic_path), data: { hook: 'question_nav' }, class: 'hidden-xs' if forums? || tickets? %>
 							<% if user_signed_in? %>
 							<%= content_tag :li, link_to(t(:logout), destroy_user_session_path), class: 'hidden-xs' %>
 							<% else %>
