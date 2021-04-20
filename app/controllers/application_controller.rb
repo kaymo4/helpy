@@ -184,11 +184,12 @@ class ApplicationController < ActionController::Base
   end
 
   def theme_chosen
-    if params[:theme].present?
+     if params[:theme].present?
       params[:theme]
     else
       AppSettings['theme.active'].present? ? AppSettings['theme.active'] : 'helpy'
     end
+     #'cosmic' was hardcoded for testing my new theme
   end
 
   def set_time_zone(&block)
