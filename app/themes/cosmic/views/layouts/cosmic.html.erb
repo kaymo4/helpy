@@ -61,6 +61,8 @@
 						<ul class="list-inline" data-hook="header-mini-nav">
 							<%#= KM hard coded context for ticket name t(:ask_a_question) => "Start an Activity" %>
 							<%= content_tag :li, link_to("Start an Activity", new_topic_path), data: { hook: 'question_nav' }, class: 'hidden-xs' if forums? || tickets? %>
+							<%#= KM Browse Activities %>
+							<%= content_tag :li, link_to("Browse Activities", new_topic_path), data: { hook: 'question_nav' }, class: 'hidden-xs' if forums? || tickets? %>
 							<% if user_signed_in? %>
 							<%= content_tag :li, link_to(t(:logout), destroy_user_session_path), class: 'hidden-xs' %>
 							<% else %>
