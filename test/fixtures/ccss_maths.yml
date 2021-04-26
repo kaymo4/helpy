@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  ccss_id: MyString
+  ccss_type: MyString
+  domain_id: MyString
+  domain_desc: MyString
+  grade_id: MyString
+  grade_name: MyString
+  cluster_id: MyString
+  standard_id: MyString
+  standard_desc: MyString
+  ccss_id: MyString
+  ccss_typ: MyString
+  domain_id: MyString
+  domain_desc: MyString
+  grade_id: MyString
+  grade_name: MyString
+  cluster_id: MyString
+  standard_id: MyString
+  standard_desc: MyText
+
+two:
+  id: 
+  ccss_id: MyString
+  ccss_type: MyString
+  domain_id: MyString
+  domain_desc: MyString
+  grade_id: MyString
+  grade_name: MyString
+  cluster_id: MyString
+  standard_id: MyString
+  standard_desc: MyString
+  ccss_id: MyString
+  ccss_typ: MyString
+  domain_id: MyString
+  domain_desc: MyString
+  grade_id: MyString
+  grade_name: MyString
+  cluster_id: MyString
+  standard_id: MyString
+  standard_desc: MyText

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Cosmic Accents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Content</th>
+      <th>Cosmic part</th>
+      <th>Cosmic lesson</th>
+      <th>Ccss math</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cosmic_accents.each do |cosmic_accent| %>
+      <tr>
+        <td><%= cosmic_accent.name %></td>
+        <td><%= cosmic_accent.content %></td>
+        <td><%= cosmic_accent.cosmic_part %></td>
+        <td><%= cosmic_accent.cosmic_lesson %></td>
+        <td><%= cosmic_accent.ccss_math %></td>
+        <td><%= link_to 'Show', cosmic_accent %></td>
+        <td><%= link_to 'Edit', edit_cosmic_accent_path(cosmic_accent) %></td>
+        <td><%= link_to 'Destroy', cosmic_accent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cosmic accent', new_cosmic_accent_path %>

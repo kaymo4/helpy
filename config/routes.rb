@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
 
+  resources :cosmic_activities
+  resources :cosmic_accents
+  resources :cosmic_parts
+  resources :cosmic_lessons
+  resources :ccss_maths
   root to: "locales#redirect_on_locale"
 
   devise_for :users, skip: [:password, :registration, :confirmation, :invitations], controllers: { omniauth_callbacks: 'omniauth_callbacks' }

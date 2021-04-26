@@ -1,0 +1,15 @@
+<%= simple_form_for(@cosmic_accent) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :content %>
+    <%= f.association :cosmic_part %>
+    <%= f.association :cosmic_lesson %>
+    <%= f.association :ccss_math %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

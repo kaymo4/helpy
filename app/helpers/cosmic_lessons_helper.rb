@@ -1,0 +1,2 @@
+module CosmicLessonsHelper
+end

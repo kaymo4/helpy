@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cosmic_part.name %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @cosmic_part.content %>
+</p>
+
+<p>
+  <strong>Cosmic lesson:</strong>
+  <%= @cosmic_part.cosmic_lesson %>
+</p>
+
+<p>
+  <strong>Ccss math:</strong>
+  <%= @cosmic_part.ccss_math %>
+</p>
+
+<%= link_to 'Edit', edit_cosmic_part_path(@cosmic_part) %> |
+<%= link_to 'Back', cosmic_parts_path %>

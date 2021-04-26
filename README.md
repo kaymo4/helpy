@@ -88,3 +88,27 @@ License
 Copyright 2016-2020, Helpy.io, LLC, Scott Miller and Contributors. Helpy Core is released under the MIT open source license.  Please contribute back any enhancements you make.  Also, I would appreciate if you kept the "powered by Helpy" blurb in the footer.  This helps me keep track of how many are using Helpy.
 
 [![Analytics](https://ga-beacon.appspot.com/UA-50151-28/helpy/readme?pixel)](https://github.com/igrigorik/ga-beacon)
+
+Development
+=============
+
+scaffold CcssMaths
+rake db:migrate => create DB table
+import csv data with navicat
+scaffold CosmicLesson CosmicActivity
+
+/bin/zsh --login -c "bash -c '/Users/kaymo/.rvm/bin/rvm ruby-2.5.1 do rake '\"'\"'db:migrate'\"'\"''"
+added  3 gems for slugs and breadcrumps and meta tags!
+will use :
+lesson_seok_slugged/activity_seok/activity_title_slugged
+lesson_seok_slugged/lesson_title_slugged
+need to have cosmic_id for lessons and activity types
+1- observe
+2- experiment
+3- create
+4- explore
+5- focus
+view with ror - create a route
+create standard_parts and standard_accents including FK and relationships
+display how lessons map for one cluster
+start to populate for lesson #2...

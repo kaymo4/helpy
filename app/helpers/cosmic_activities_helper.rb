@@ -1,0 +1,2 @@
+module CosmicActivitiesHelper
+end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191005134018) do
+ActiveRecord::Schema.define(version: 20210426063941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 20191005134018) do
 
   add_index "api_keys", ["access_token"], name: "index_api_keys_on_access_token", unique: true, using: :btree
   add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", using: :btree
+
+  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "attachinary_files", force: :cascade do |t|
     t.integer  "attachinariable_id"
@@ -87,6 +93,83 @@ ActiveRecord::Schema.define(version: 20191005134018) do
 
   add_index "category_translations", ["category_id"], name: "index_category_translations_on_category_id", using: :btree
   add_index "category_translations", ["locale"], name: "index_category_translations_on_locale", using: :btree
+
+  create_table "ccss_maths", force: :cascade do |t|
+    t.string   "ccss_id"
+    t.string   "ccss_type"
+    t.string   "domain_id"
+    t.string   "domain_desc"
+    t.string   "grade_id"
+    t.string   "grade_name"
+    t.string   "cluster_id"
+    t.string   "standard_id"
+    t.text     "standard_desc"
+    t.string   "ccss_typ"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cosmic_accents", force: :cascade do |t|
+    t.string   "name"
+    t.text     "content"
+    t.integer  "cosmic_part_id"
+    t.integer  "cosmic_lesson_id"
+    t.integer  "ccss_math_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "cosmic_accents", ["ccss_math_id"], name: "index_cosmic_accents_on_ccss_math_id", using: :btree
+  add_index "cosmic_accents", ["cosmic_lesson_id"], name: "index_cosmic_accents_on_cosmic_lesson_id", using: :btree
+  add_index "cosmic_accents", ["cosmic_part_id"], name: "index_cosmic_accents_on_cosmic_part_id", using: :btree
+
+  create_table "cosmic_activities", force: :cascade do |t|
+    t.string   "seo_key"
+    t.string   "title_short"
+    t.string   "title_long"
+    t.text     "overview"
+    t.text     "content"
+    t.string   "type"
+    t.string   "screenshot"
+    t.string   "thumbnail"
+    t.string   "custom1"
+    t.text     "custom2"
+    t.integer  "cosmic_lesson_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "cosmic_activities", ["cosmic_lesson_id"], name: "index_cosmic_activities_on_cosmic_lesson_id", using: :btree
+
+  create_table "cosmic_lessons", force: :cascade do |t|
+    t.string   "seo_key"
+    t.string   "cosmic_domain"
+    t.integer  "cosmic_domain_order"
+    t.string   "title_short"
+    t.string   "title_long"
+    t.text     "overview"
+    t.text     "content"
+    t.string   "type"
+    t.string   "custom1"
+    t.text     "custom2"
+    t.integer  "ccss_math_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "cosmic_lessons", ["ccss_math_id"], name: "index_cosmic_lessons_on_ccss_math_id", using: :btree
+
+  create_table "cosmic_parts", force: :cascade do |t|
+    t.string   "name"
+    t.text     "content"
+    t.integer  "cosmic_lesson_id"
+    t.integer  "ccss_math_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "cosmic_parts", ["ccss_math_id"], name: "index_cosmic_parts_on_ccss_math_id", using: :btree
+  add_index "cosmic_parts", ["cosmic_lesson_id"], name: "index_cosmic_parts_on_cosmic_lesson_id", using: :btree
 
   create_table "doc_translations", force: :cascade do |t|
     t.integer  "doc_id",           null: false
@@ -224,8 +307,15 @@ ActiveRecord::Schema.define(version: 20191005134018) do
     t.datetime "created_at"
   end
 
+  add_index "taggings", ["context"], name: "index_taggings_on_context", using: :btree
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy", using: :btree
+  add_index "taggings", ["taggable_id"], name: "index_taggings_on_taggable_id", using: :btree
+  add_index "taggings", ["taggable_type"], name: "index_taggings_on_taggable_type", using: :btree
+  add_index "taggings", ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
+  add_index "taggings", ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string  "name"
@@ -363,4 +453,11 @@ ActiveRecord::Schema.define(version: 20191005134018) do
     t.datetime "updated_at",                null: false
   end
 
+  add_foreign_key "cosmic_accents", "ccss_maths"
+  add_foreign_key "cosmic_accents", "cosmic_lessons"
+  add_foreign_key "cosmic_accents", "cosmic_parts"
+  add_foreign_key "cosmic_activities", "cosmic_lessons"
+  add_foreign_key "cosmic_lessons", "ccss_maths"
+  add_foreign_key "cosmic_parts", "ccss_maths"
+  add_foreign_key "cosmic_parts", "cosmic_lessons"
 end

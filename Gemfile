@@ -113,6 +113,11 @@ gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-select-rails'
 gem 'gemoji'
 
+#create slugs and breadcrumps for better SEO - KM
+gem 'friendly_id', '~> 5.4.0'
+gem "breadcrumbs_on_rails"
+gem 'meta-tags'
+
 gem 'config', '~> 1.1.0'
 
 # Email/Mail Handling
@@ -159,6 +164,7 @@ gem 'helpy_imap', git: 'https://github.com/helpyio/helpy_imap', branch: 'master'
 
 group :development, :test do
   # Audit Gemfile for security vulnerabilities
+  gem 'puma'
   gem 'bundler-audit', require: false
   gem 'byebug'
   gem 'pry'

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Cosmic Parts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Content</th>
+      <th>Cosmic lesson</th>
+      <th>Ccss math</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cosmic_parts.each do |cosmic_part| %>
+      <tr>
+        <td><%= cosmic_part.name %></td>
+        <td><%= cosmic_part.content %></td>
+        <td><%= cosmic_part.cosmic_lesson %></td>
+        <td><%= cosmic_part.ccss_math %></td>
+        <td><%= link_to 'Show', cosmic_part %></td>
+        <td><%= link_to 'Edit', edit_cosmic_part_path(cosmic_part) %></td>
+        <td><%= link_to 'Destroy', cosmic_part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cosmic part', new_cosmic_part_path %>

@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  seo_key: MyString
+  title_short: MyString
+  title_long: MyString
+  overview: MyText
+  content: MyText
+  type: 
+  screenshot: MyString
+  thumbnail: MyString
+  custom1: MyString
+  custom2: MyText
+  cosmic_lesson_id: 
+
+two:
+  seo_key: MyString
+  title_short: MyString
+  title_long: MyString
+  overview: MyText
+  content: MyText
+  type: 
+  screenshot: MyString
+  thumbnail: MyString
+  custom1: MyString
+  custom2: MyText
+  cosmic_lesson_id: 
