@@ -118,6 +118,9 @@ gem 'friendly_id', '~> 5.4.0'
 gem "breadcrumbs_on_rails"
 gem 'meta-tags'
 
+#provide tools for SL views
+gem 'scenic'
+
 gem 'config', '~> 1.1.0'
 
 # Email/Mail Handling

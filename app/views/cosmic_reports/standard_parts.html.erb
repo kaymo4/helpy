@@ -1,0 +1,15 @@
+<table> <tr>
+  <th>CCSS</th>
+  <th>Standard_DB_ID</th>
+  <th>Nb of Parts</th>
+  <th>cosmic_lesson_id</th>
+</tr>
+  <% @standard_parts.each do |standard_part| %>
+    <tr>
+      <td><%= standard_part.ccss %></td>
+      <td><%= standard_part.ccss_db_id %></td>
+      <td><%= standard_part.nb_of_parts %></td>
+      <td><%= standard_part.lesson_db_id %></td>
+    </tr>
+  <% end %>
+</table>

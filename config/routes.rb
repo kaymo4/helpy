@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
 
-
+  #cosmic ressources
   resources :cosmic_activities
   resources :cosmic_accents
   resources :cosmic_parts
   resources :cosmic_lessons
   resources :ccss_maths
+
+  #cosmic reports
+  get 'cosmic_reports/standard_parts', to:  "cosmic_reports#standard_parts"
+
   root to: "locales#redirect_on_locale"
 
   devise_for :users, skip: [:password, :registration, :confirmation, :invitations], controllers: { omniauth_callbacks: 'omniauth_callbacks' }

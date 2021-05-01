@@ -112,3 +112,25 @@ view with ror - create a route
 create standard_parts and standard_accents including FK and relationships
 display how lessons map for one cluster
 start to populate for lesson #2...
+
+Views for reports
+=============
+route: cosmic_reports/standard_parts
+module cosmic_reports
+1) standard_parts
+using scenic gem https://github.com/scenic-views/scenic
+You can use replace_view to generate a CREATE OR REPLACE VIEW SQL statement.
+
+rails generate scenic:view standard_parts
+it will create v02 of the sql and v2 of the migration
+->then edit the migration:
+modify the migration with :  update_view  changed to  replace_view
+->then edit the sql query as well...
+then db:migrate and all is ready to work.
+do not change the design of the view
+for changes -> delete migration v01.sql db view and sql in schema
+redo; rails generate scenic:view standard_parts
+change/edit the .sql file
+then do rake db:migrate
+2) standard_accents
+3) Lesson mapping

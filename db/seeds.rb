@@ -16,10 +16,17 @@ cosmic_lesson = CosmicLesson.create!(
 
 cosmic_part = CosmicPart.create!(
   name: '6.NS.C6c - Part1', #name can be inferred through the math_ccss_id
-  content: 'Find and position integers and other rational numbers on a horizontal or vertical number line diagram;',
+  content: 'Part 1:Find and position integers and other rational numbers on a horizontal or vertical number line diagram;',
   ccss_math_id: '26',
   cosmic_lesson_id: '1' #this part belongs to ONE lesson - a lesson may have many parts
   )
+
+cosmic_part = CosmicPart.create!(
+  name: '6.NS.C6c - Part2', #name can be inferred through the math_ccss_id
+  content: 'Part 2: find and position pairs of integers and other rational numbers on a coordinate plane. ',
+  ccss_math_id: '26',
+  cosmic_lesson_id: '1' #this part belongs to ONE lesson - a lesson may have many parts
+)
 
 cosmic_accent = CosmicAccent.create!(
   name: 'vertical number line',
@@ -29,6 +36,13 @@ cosmic_accent = CosmicAccent.create!(
   cosmic_lesson_id: '1' #this accent belongs to ONE lesson - a lesson may have many accents
 )
 
+cosmic_accent = CosmicAccent.create!(
+  name: 'horizontal number line',
+  content: 'a horizontal',
+  ccss_math_id: '26',
+  cosmic_part_id:'1',
+  cosmic_lesson_id: '1' #this accent belongs to ONE lesson - a lesson may have many accents
+)
 
 cosmic_activity = CosmicActivity.create!(
   seo_key: 'number_line',

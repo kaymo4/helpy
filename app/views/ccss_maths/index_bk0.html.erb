@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ccss Maths</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Ccss</th>
+      <th>Ccss type</th>
+      <th>Domain</th>
+      <th>Domain desc</th>
+      <th>Grade</th>
+      <th>Grade name</th>
+      <th>Cluster</th>
+      <th>Standard</th>
+      <th>Standard desc</th>
+      <th>Ccss</th>
+      <th>Ccss typ</th>
+      <th>Domain</th>
+      <th>Domain desc</th>
+      <th>Grade</th>
+      <th>Grade name</th>
+      <th>Cluster</th>
+      <th>Standard</th>
+      <th>Standard desc</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ccss_maths.each do |ccss_math| %>
+      <tr>
+        <td><%= ccss_math.id %></td>
+        <td><%= ccss_math.ccss_id %></td>
+        <td><%= ccss_math.ccss_type %></td>
+        <td><%= ccss_math.domain_id %></td>
+        <td><%= ccss_math.domain_desc %></td>
+        <td><%= ccss_math.grade_id %></td>
+        <td><%= ccss_math.grade_name %></td>
+        <td><%= ccss_math.cluster_id %></td>
+        <td><%= ccss_math.standard_id %></td>
+        <td><%= ccss_math.standard_desc %></td>
+        <td><%= ccss_math.ccss_id %></td>
+        <td><%= ccss_math.ccss_typ %></td>
+        <td><%= ccss_math.domain_id %></td>
+        <td><%= ccss_math.domain_desc %></td>
+        <td><%= ccss_math.grade_id %></td>
+        <td><%= ccss_math.grade_name %></td>
+        <td><%= ccss_math.cluster_id %></td>
+        <td><%= ccss_math.standard_id %></td>
+        <td><%= ccss_math.standard_desc %></td>
+        <td><%= link_to 'Show', ccss_math %></td>
+        <td><%= link_to 'Edit', edit_ccss_math_path(ccss_math) %></td>
+        <td><%= link_to 'Destroy', ccss_math, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ccss math', new_ccss_math_path %>
