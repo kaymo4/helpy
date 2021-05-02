@@ -9,16 +9,11 @@ class CcssMathsController < ApplicationController
     # get intelligence, which standard has parts and how many
     std_parts = StandardPart.where('nb_of_parts > 0').pluck(:ccss_db_id, :nb_of_parts)
     # convert the array to hash with key value, key->ccss_db_id, value ->nb_of_parts
-    @std_parts_hashes = {}
+    @std_parts_hashes = { }
     std_parts.each { |k, v| @std_parts_hashes[k] = v }
     # get all accents with parts
-    part_accents = CosmicAccent.where('cosmic_part_id IS NOT NULL').pluck(:ccss_math_id, :content)
-    # get intelligence, which part has accents and how many
-    #  convert the array to hash with key value, key->cosmic_part_id, value ->content
-   @part_accents_hashes = {}
-    part_accents.each { |k, v| @part_accents_hashes[k] = v }
-    # TO DO IS ONLY DISPLAYING TEH LAST found in the view but the console is correct
-    # => [[26, "or vertical"], [26, "a horizontal"]]
+    # use scope in model
+
   end
 
   # GET /ccss_maths/1

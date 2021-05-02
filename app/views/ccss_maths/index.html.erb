@@ -30,19 +30,25 @@
           <td>
 
             <% if @std_parts_hashes[ccss_math.id].nil? %>
-              <%= ccss_math.standard_desc %>
+              <%= ccss_math.id %>|
+
+              <!-- searching and replacing all existing accents in this standard_desc -->
+              <% accent_no_part_contents= CosmicAccent.per_ccss_id_no_part(ccss_math.id)%>
+              <% accent_no_part_contents.each {|accent_no_part_content|  ccss_math.standard_desc.gsub!(accent_no_part_content, "["+accent_no_part_content+"]") } %>
+              <%= ccss_math.standard_desc  %>
             <% else %>
               <!-- content was split into cosmic parts -->
-             List of Accents:
-               <%= @part_accents_hashes.each do |part_accents_hash| %>
-               <%= part_accents_hash[ccss_math.id] %>
-               <% end %>
-
+              <% accent_contents= CosmicAccent.per_ccss_id_per_part(ccss_math.id)%>
               <p style="font-style: italic"> (split into <%= @std_parts_hashes[ccss_math.id] %> parts)</p>
               <% idx=0 %><!-- @std_parts_hashes has value-> the number of parts for key -> ccss_math.id -->
               <%  @std_parts_hashes[ccss_math.id].times() do %>
-              <p>   <span style="font-style: italic">Part  <% idx+1 %>:</span>  <%= CosmicPart.per_ccss_id(ccss_math.id)[idx] %>
-                <% idx=idx+1 %>
+              <p>   <span style="font-style: italic">Part  <%= idx+1 %>:</span>
+                <% part_content = [] %>
+                <% part_content[idx] = CosmicPart.per_ccss_id(ccss_math.id)[idx] %>
+                <!-- searching and replacing all accents in this part -->
+                <% accent_contents.each {|accent_content|  part_content[idx].gsub!(accent_content, "["+accent_content+"]") } %>
+                <%= part_content[idx] %>
+                  <% idx=idx+1 %>
               </p>
 
             <% end %>

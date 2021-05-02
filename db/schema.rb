@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210426063941) do
+ActiveRecord::Schema.define(version: 20210428045928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -460,4 +460,14 @@ ActiveRecord::Schema.define(version: 20210426063941) do
   add_foreign_key "cosmic_lessons", "ccss_maths"
   add_foreign_key "cosmic_parts", "ccss_maths"
   add_foreign_key "cosmic_parts", "cosmic_lessons"
+
+  create_view "standard_parts", sql_definition: <<-SQL
+      SELECT m.ccss_id AS ccss,
+      m.id AS ccss_db_id,
+      a.cosmic_lesson_id AS lesson_db_id,
+      count(m.id) AS nb_of_parts
+     FROM (ccss_maths m
+       JOIN cosmic_parts a ON ((m.id = a.ccss_math_id)))
+    GROUP BY m.id, a.cosmic_lesson_id;
+  SQL
 end

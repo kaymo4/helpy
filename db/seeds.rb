@@ -3,6 +3,9 @@
 # # can also be used in that case: reset the database, rails db:reset will drop the database, create again, and seed the application.
 puts "Seeding in process ..."
 
+
+
+
 cosmic_lesson = CosmicLesson.create!(
   seo_key: 'fraction',
   cosmic_domain: 'NS', #could infer with ccss_domain_id: 'NS'
@@ -37,12 +40,12 @@ cosmic_accent = CosmicAccent.create!(
 )
 
 cosmic_accent = CosmicAccent.create!(
-  name: 'horizontal number line',
-  content: 'a horizontal',
-  ccss_math_id: '26',
-  cosmic_part_id:'1',
+  name: 'ordering rational numbers',
+  content: 'ordering',
+  ccss_math_id: '27',
   cosmic_lesson_id: '1' #this accent belongs to ONE lesson - a lesson may have many accents
 )
+
 
 cosmic_activity = CosmicActivity.create!(
   seo_key: 'number_line',
