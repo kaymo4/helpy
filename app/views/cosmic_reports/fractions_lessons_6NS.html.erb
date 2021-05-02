@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Maths Grade 6 - Domain: Number System</h1>
+<h2>Fractions</h2>
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>Domain</th>
+        <th>Grade</th>
+        <th>Cluster</th>
+        <th>Standard_id</th>
+        <th>Description</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <% @ccss_maths.each do |ccss_math| %>
+        <tr>
+
+          <td><%= ccss_math.domain_id %></td>
+
+          <td><%= ccss_math.grade_id %></td>
+
+          <td><%= ccss_math.cluster_id %></td>
+          <td><%= ccss_math.standard_id %></td>
+          <td>
+
+            <% if @std_parts_hashes[ccss_math.id].nil? %>
+              <%= ccss_math.id %>|
+
+              <!-- searching and replacing all existing accents in this standard_desc -->
+              <% accent_no_part_contents= CosmicAccent.per_ccss_id_no_part(ccss_math.id)%>
+              <% accent_no_part_contents.each {|accent_no_part_content|  ccss_math.standard_desc.gsub!(accent_no_part_content, "["+accent_no_part_content+"]") } %>
+              <%= ccss_math.standard_desc  %>
+            <% else %>
+              <!-- content was split into cosmic parts -->
+              <% accent_contents= CosmicAccent.per_ccss_id_per_part(ccss_math.id)%>
+              <p style="font-style: italic"> (split into <%= @std_parts_hashes[ccss_math.id] %> parts)</p>
+              <% idx=0 %><!-- @std_parts_hashes has value-> the number of parts for key -> ccss_math.id -->
+              <%  @std_parts_hashes[ccss_math.id].times() do %>
+                <p>   <span style="font-style: italic">Part  <%= idx+1 %>:</span>
+                  <% part_content = [] %>
+                  <% part_content[idx] = CosmicPart.per_ccss_id(ccss_math.id)[idx] %>
+                  <!-- searching and replacing all accents in this part -->
+                  <% accent_contents.each {|accent_content|  part_content[idx].gsub!(accent_content, "["+accent_content+"]") } %>
+                  <%= part_content[idx] %>
+                  <% idx=idx+1 %>
+                </p>
+
+              <% end %>
+            <% end %>
+          </td>
+          <td><%= link_to 'Show', ccss_math %></td>
+          <td><%= link_to 'Edit', edit_ccss_math_path(ccss_math) %>
+          <td><%= link_to 'Destroy', ccss_math, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <br>
+
+  <%= link_to 'New Ccss math', new_ccss_math_path %>
+
+</div>

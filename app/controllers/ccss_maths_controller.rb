@@ -12,7 +12,7 @@ class CcssMathsController < ApplicationController
     @std_parts_hashes = { }
     std_parts.each { |k, v| @std_parts_hashes[k] = v }
     # get all accents with parts
-    # use scope in model
+    # used scope in model
 
   end
 

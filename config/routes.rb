@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   #cosmic reports
   get 'cosmic_reports/standard_parts', to:  "cosmic_reports#standard_parts"
+  get 'cosmic_reports/fractions_lessons_6NS', to: "cosmic_reports#fractions_lessons_6NS"
 
   root to: "locales#redirect_on_locale"
 
