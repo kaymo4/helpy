@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :cosmic_lessons
   #cosmic ressources
   resources :cosmic_activities
   resources :cosmic_accents
   resources :cosmic_parts
-  resources :cosmic_lessons
   resources :ccss_maths
 
   #cosmic reports

@@ -1,3 +1,4 @@
 class CosmicLesson < ActiveRecord::Base
-  belongs_to :ccss_math
+  has_many :ccss_lessons
+  has_many :ccss_maths , through: :ccss_lessons
 end

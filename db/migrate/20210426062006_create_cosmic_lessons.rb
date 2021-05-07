@@ -11,7 +11,6 @@ class CreateCosmicLessons < ActiveRecord::Migration
       t.string :type
       t.string :custom1
       t.text :custom2
-      t.references :ccss_math, index: true, foreign_key: true
 
       t.timestamps null: false
     end

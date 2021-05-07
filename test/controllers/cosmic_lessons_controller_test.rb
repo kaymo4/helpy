@@ -18,7 +18,7 @@ class CosmicLessonsControllerTest < ActionController::TestCase
 
   test "should create cosmic_lesson" do
     assert_difference('CosmicLesson.count') do
-      post :create, cosmic_lesson: { ccss_math_id: @cosmic_lesson.ccss_math_id, content: @cosmic_lesson.content, cosmic_domain: @cosmic_lesson.cosmic_domain, cosmic_domain_order: @cosmic_lesson.cosmic_domain_order, custom1: @cosmic_lesson.custom1, custom2: @cosmic_lesson.custom2, overview: @cosmic_lesson.overview, seo_key: @cosmic_lesson.seo_key, title_long: @cosmic_lesson.title_long, title_short: @cosmic_lesson.title_short, type: @cosmic_lesson.type }
+      post :create, cosmic_lesson: { content: @cosmic_lesson.content, cosmic_domain: @cosmic_lesson.cosmic_domain, cosmic_domain_order: @cosmic_lesson.cosmic_domain_order, custom1: @cosmic_lesson.custom1, custom2: @cosmic_lesson.custom2, overview: @cosmic_lesson.overview, seo_key: @cosmic_lesson.seo_key, title_long: @cosmic_lesson.title_long, title_short: @cosmic_lesson.title_short, type: @cosmic_lesson.type }
     end
 
     assert_redirected_to cosmic_lesson_path(assigns(:cosmic_lesson))
@@ -35,7 +35,7 @@ class CosmicLessonsControllerTest < ActionController::TestCase
   end
 
   test "should update cosmic_lesson" do
-    patch :update, id: @cosmic_lesson, cosmic_lesson: { ccss_math_id: @cosmic_lesson.ccss_math_id, content: @cosmic_lesson.content, cosmic_domain: @cosmic_lesson.cosmic_domain, cosmic_domain_order: @cosmic_lesson.cosmic_domain_order, custom1: @cosmic_lesson.custom1, custom2: @cosmic_lesson.custom2, overview: @cosmic_lesson.overview, seo_key: @cosmic_lesson.seo_key, title_long: @cosmic_lesson.title_long, title_short: @cosmic_lesson.title_short, type: @cosmic_lesson.type }
+    patch :update, id: @cosmic_lesson, cosmic_lesson: { content: @cosmic_lesson.content, cosmic_domain: @cosmic_lesson.cosmic_domain, cosmic_domain_order: @cosmic_lesson.cosmic_domain_order, custom1: @cosmic_lesson.custom1, custom2: @cosmic_lesson.custom2, overview: @cosmic_lesson.overview, seo_key: @cosmic_lesson.seo_key, title_long: @cosmic_lesson.title_long, title_short: @cosmic_lesson.title_short, type: @cosmic_lesson.type }
     assert_redirected_to cosmic_lesson_path(assigns(:cosmic_lesson))
   end
 

@@ -14,7 +14,6 @@ cosmic_lesson = CosmicLesson.create!(
   title_long: 'What do you know about number lines? What terminology and concepts are useful to visualize rational numbers including integers, decimals, and fractions. ',
   overview:'activity_overview',
   content: 'content of activity starts here...',
-  ccss_math_id:'26', #will infer ccss_domain_id: 'NS'
   )
 
 cosmic_part = CosmicPart.create!(

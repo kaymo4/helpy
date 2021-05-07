@@ -5,7 +5,7 @@ class CcssMathsController < ApplicationController
   # GET /ccss_maths.json
   def index
     #get all ccss standards
-    @ccss_maths = CcssMath.all
+    @ccss_maths = CcssMath.all.order(:id)
     # get intelligence, which standard has parts and how many
     std_parts = StandardPart.where('nb_of_parts > 0').pluck(:ccss_db_id, :nb_of_parts)
     # convert the array to hash with key value, key->ccss_db_id, value ->nb_of_parts
@@ -13,6 +13,8 @@ class CcssMathsController < ApplicationController
     std_parts.each { |k, v| @std_parts_hashes[k] = v }
     # get all accents with parts
     # used scope in model
+    # get joint table info with cosmic lessons
+    #    @my_cosmic_lessons = CcssMathCosmicLesson.all.order(:cosmic_lesson_id)
 
   end
 
@@ -33,17 +35,10 @@ class CcssMathsController < ApplicationController
   # POST /ccss_maths
   # POST /ccss_maths.json
   def create
-    @ccss_math = CcssMath.new(ccss_math_params)
 
-    respond_to do |format|
-      if @ccss_math.save
-        format.html { redirect_to @ccss_math, notice: 'Ccss math was successfully created.' }
-        format.json { render :show, status: :created, location: @ccss_math }
-      else
-        format.html { render :new }
-        format.json { render json: @ccss_math.errors, status: :unprocessable_entity }
-      end
-    end
+
+
+
   end
 
   # PATCH/PUT /ccss_maths/1
@@ -79,6 +74,6 @@ class CcssMathsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def ccss_math_params
-    params.require(:ccss_math).permit(:id, :ccss_id, :ccss_type, :domain_id, :domain_desc, :grade_id, :grade_name, :cluster_id, :standard_id, :standard_desc, :ccss_id, :ccss_typ, :domain_id, :domain_desc, :grade_id, :grade_name, :cluster_id, :standard_id, :standard_desc)
+    params.require(:ccss_math).permit(:id, :ccss_id, :ccss_type, :domain_id, :domain_desc, :grade_id, :grade_name, :cluster_id, :standard_id, :standard_desc, :ccss_id, :ccss_typ, :domain_id, :domain_desc, :grade_id, :grade_name, :cluster_id, :standard_id, :standard_desc, ccss_lessons_ids: [], cosmic_lesson_ids: [])
   end
 end

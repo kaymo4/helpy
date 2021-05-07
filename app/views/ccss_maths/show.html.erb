@@ -95,5 +95,20 @@
   <%= @ccss_math.standard_desc %>
 </p>
 
+<p>
+  <strong>All associated lessons:</strong>
+<ul>
+
+  <% @ccss_math.cosmic_lessons.order(:cosmic_domain_order).each do |lesson| %>
+
+    <li> Cosmic Domain Order #:
+      <%= lesson.cosmic_domain_order %>
+      Cosmic SEO Key #:
+      <%= lesson.seo_key %>
+    </li>
+  <% end %>
+</ul>
+</p>
+
 <%= link_to 'Edit', edit_ccss_math_path(@ccss_math) %> |
 <%= link_to 'Back', ccss_maths_path %>
