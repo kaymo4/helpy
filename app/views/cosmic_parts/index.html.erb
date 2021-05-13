@@ -12,14 +12,16 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
+TO DO : resolve a bug when editing parts and recording a new lesson id and when displaying parts with no lesson id.
   <tbody>
     <% @cosmic_parts.each do |cosmic_part| %>
       <tr>
         <td><%= cosmic_part.name %></td>
         <td><%= cosmic_part.content %></td>
-        <td><%= cosmic_part.cosmic_lesson %></td>
-        <td><%= cosmic_part.ccss_math %></td>
+        <!-- there may be several lessons for one part ! Our procedure is to create another part as needed -->
+        <td>  <%= CosmicLesson.find(cosmic_part.cosmic_lesson_id).cosmic_domain_order %></td>
+        <td>  <%= CcssMath.find(cosmic_part.ccss_math_id).ccss_id %></td>
+
         <td><%= link_to 'Show', cosmic_part %></td>
         <td><%= link_to 'Edit', edit_cosmic_part_path(cosmic_part) %></td>
         <td><%= link_to 'Destroy', cosmic_part, method: :delete, data: { confirm: 'Are you sure?' } %></td>

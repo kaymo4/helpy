@@ -4,15 +4,6 @@
   <div class="form-inputs">
     <%= f.input :id %>
     <%= f.input :ccss_id %>
-    <%= f.input :ccss_type %>
-    <%= f.input :domain_id %>
-    <%= f.input :domain_desc %>
-    <%= f.input :grade_id %>
-    <%= f.input :grade_name %>
-    <%= f.input :cluster_id %>
-    <%= f.input :standard_id %>
-    <%= f.input :standard_desc %>
-    <%= f.input :ccss_id %>
     <%= f.input :ccss_typ %>
     <%= f.input :domain_id %>
     <%= f.input :domain_desc %>
@@ -21,7 +12,7 @@
     <%= f.input :cluster_id %>
     <%= f.input :standard_id %>
     <%= f.input :standard_desc %>
-    <%= f.association :cosmic_lessons, collection: CosmicLesson.order(:cosmic_domain_order), label_method: :cosmic_domain_order ,as: :check_boxes%>
+    <%= f.association :cosmic_lessons, collection: CosmicLesson.order(:cosmic_domain_order), label_method: :cosmic_domain_order %>
 
 
   </div>

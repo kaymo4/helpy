@@ -5,50 +5,7 @@
   <%= @ccss_math.id %>
 </p>
 
-<p>
-  <strong>Ccss:</strong>
-  <%= @ccss_math.ccss_id %>
-</p>
 
-<p>
-  <strong>Ccss type:</strong>
-  <%= @ccss_math.ccss_type %>
-</p>
-
-<p>
-  <strong>Domain:</strong>
-  <%= @ccss_math.domain_id %>
-</p>
-
-<p>
-  <strong>Domain desc:</strong>
-  <%= @ccss_math.domain_desc %>
-</p>
-
-<p>
-  <strong>Grade:</strong>
-  <%= @ccss_math.grade_id %>
-</p>
-
-<p>
-  <strong>Grade name:</strong>
-  <%= @ccss_math.grade_name %>
-</p>
-
-<p>
-  <strong>Cluster:</strong>
-  <%= @ccss_math.cluster_id %>
-</p>
-
-<p>
-  <strong>Standard:</strong>
-  <%= @ccss_math.standard_id %>
-</p>
-
-<p>
-  <strong>Standard desc:</strong>
-  <%= @ccss_math.standard_desc %>
-</p>
 
 <p>
   <strong>Ccss:</strong>
@@ -96,19 +53,38 @@
 </p>
 
 <p>
-  <strong>All associated lessons:</strong>
+  <strong>Lessons covering this standard:</strong>
 <ul>
-
   <% @ccss_math.cosmic_lessons.order(:cosmic_domain_order).each do |lesson| %>
-
-    <li> Cosmic Domain Order #:
-      <%= lesson.cosmic_domain_order %>
-      Cosmic SEO Key #:
-      <%= lesson.seo_key %>
+    <li>
+      Cosmic Domain Order #: <%= lesson.cosmic_domain_order %>
+      | Cosmic SEO Key #: <%= lesson.seo_key %>
     </li>
   <% end %>
 </ul>
-</p>
+<strong>Lessons covering [accents]:</strong>
+<ul>
+  <% accent_lessons_all=[] %>
+  <% accent_lessons = CosmicAccent.where(ccss_math_id: @ccss_math.id) %>
+  <% accent_lessons.each do |accent_lesson| %>
+    <% @unique_lesson = CosmicLesson.find(accent_lesson.cosmic_lesson_id).cosmic_domain_order %>
+    <% accent_lessons_all.push(@unique_lesson)%>
+  <% end %>
+  <% distinct_accent_lessons=accent_lessons_all.uniq  %>
+  <li> Cosmic Domain Order #: <%= @unique_lesson %> | nb of accents (all|distinct):  <%= accent_lessons_all.length %> | <%=distinct_accent_lessons.length %>
+  </li>
+  <! --- display all lessons accented or just the one -->
+  <% if distinct_accent_lessons.length>1 %>
+    <li> Lesson Cosmic Domain Order #s:
+  <%=  accent_lessons_all.each { |a|  a }  %>
+    </li>
+
+  <% else %>
+    <li>  Lesson Cosmic Domain Order #: <%= @unique_lesson %></li>
+  <% end %>
+</ul>
+
+
 
 <%= link_to 'Edit', edit_ccss_math_path(@ccss_math) %> |
 <%= link_to 'Back', ccss_maths_path %>

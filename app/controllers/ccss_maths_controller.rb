@@ -1,5 +1,5 @@
 class CcssMathsController < ApplicationController
-  before_action :set_ccss_math, only: [:show, :edit, :update, :destroy]
+  before_action :set_ccss_math, only: [ :show, :edit, :update, :destroy]
 
   # GET /ccss_maths
   # GET /ccss_maths.json
@@ -74,6 +74,6 @@ class CcssMathsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def ccss_math_params
-    params.require(:ccss_math).permit(:id, :ccss_id, :ccss_type, :domain_id, :domain_desc, :grade_id, :grade_name, :cluster_id, :standard_id, :standard_desc, :ccss_id, :ccss_typ, :domain_id, :domain_desc, :grade_id, :grade_name, :cluster_id, :standard_id, :standard_desc, ccss_lessons_ids: [], cosmic_lesson_ids: [])
+    params.require(:ccss_math).permit(:id, :ccss_id, :ccss_typ, :domain_id, :domain_desc, :grade_id, :grade_name, :cluster_id, :standard_id, :standard_desc, ccss_lessons_ids: [], cosmic_lesson_ids: [])
   end
 end

@@ -1,0 +1,19 @@
+<%= simple_form_for(@ccss_lesson) do |f| %>
+  <%= f.error_notification %>
+
+
+
+  <div class="form-inputs">
+    <%= f.input :id %>
+    <%= f.input :ccss_math_id %>
+    <%= f.input :cosmic_lesson_id %>
+    <%= f.input :accented %>
+    <%= f.input :parted %>
+    <%= f.input :custom1 %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

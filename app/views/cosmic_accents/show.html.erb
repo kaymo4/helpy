@@ -9,21 +9,13 @@
   <strong>Content:</strong>
   <%= @cosmic_accent.content %>
 </p>
+<!-- there may be several accents for a standard or part ! Our procedure is to create another accent as needed -->
 
-<p>
-  <strong>Cosmic part:</strong>
-  <%= @cosmic_accent.cosmic_part %>
-</p>
+<p><strong>Ccss part#:</strong> <%= CosmicPart.find_by_ccss_math_id(@cosmic_accent.ccss_math_id).name %></p>
+<p><strong>Cosmic lesson:</strong> <%= CosmicLesson.find(@cosmic_accent.cosmic_lesson_id).cosmic_domain_order if CosmicLesson.find_by_cosmic_domain_order(@cosmic_accent.cosmic_lesson_id).cosmic_domain_order.present? %></p>
+<p><strong>Ccss math:</strong> <%= CcssMath.find(@cosmic_accent.ccss_math_id).ccss_id %></p>
 
-<p>
-  <strong>Cosmic lesson:</strong>
-  <%= @cosmic_accent.cosmic_lesson %>
-</p>
 
-<p>
-  <strong>Ccss math:</strong>
-  <%= @cosmic_accent.ccss_math %>
-</p>
 
 <%= link_to 'Edit', edit_cosmic_accent_path(@cosmic_accent) %> |
 <%= link_to 'Back', cosmic_accents_path %>
