@@ -2,16 +2,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
     <%= f.input :content %>
-    <%= f.association :cosmic_part,collection: CosmicPart.order(:ccss_math_id), label_method: :name %>
-    <%= f.association :cosmic_lesson, collection: CosmicLesson.order(:cosmic_domain_order), label_method: :cosmic_domain_order %>
-    <%= f.association :ccss_math, collection: CcssMath.order(:ccss_id), label_method: :ccss_id %>
+    <%= f.association :cosmic_part, label_method:
 
+      lambda {
 
+        |cosmic| "#{cosmic.ccss} - Part# #{cosmic.part}"
 
-
-
+      } %>
   </div>
 
   <div class="form-actions">

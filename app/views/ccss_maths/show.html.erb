@@ -52,37 +52,38 @@
   <%= @ccss_math.standard_desc %>
 </p>
 
-<p>
-  <strong>Lessons covering this standard:</strong>
-<ul>
-  <% @ccss_math.cosmic_lessons.order(:cosmic_domain_order).each do |lesson| %>
-    <li>
-      Cosmic Domain Order #: <%= lesson.cosmic_domain_order %>
-      | Cosmic SEO Key #: <%= lesson.seo_key %>
-    </li>
-  <% end %>
-</ul>
-<strong>Lessons covering [accents]:</strong>
-<ul>
-  <% accent_lessons_all=[] %>
-  <% accent_lessons = CosmicAccent.where(ccss_math_id: @ccss_math.id) %>
-  <% accent_lessons.each do |accent_lesson| %>
-    <% @unique_lesson = CosmicLesson.find(accent_lesson.cosmic_lesson_id).cosmic_domain_order %>
-    <% accent_lessons_all.push(@unique_lesson)%>
-  <% end %>
-  <% distinct_accent_lessons=accent_lessons_all.uniq  %>
-  <li> Cosmic Domain Order #: <%= @unique_lesson %> | nb of accents (all|distinct):  <%= accent_lessons_all.length %> | <%=distinct_accent_lessons.length %>
-  </li>
-  <! --- display all lessons accented or just the one -->
-  <% if distinct_accent_lessons.length>1 %>
-    <li> Lesson Cosmic Domain Order #s:
-  <%=  accent_lessons_all.each { |a|  a }  %>
-    </li>
 
-  <% else %>
-    <li>  Lesson Cosmic Domain Order #: <%= @unique_lesson %></li>
+
+  <!-- parts in this standard ? -->
+<strong>Parts for this standard:</strong>
+
+
+<ul>
+  <%  CosmicPart.where(ccss_math_id: @ccss_math).each do |part|   %>
+  <li> Part#<%= part.part %><span>| <%= part.desc %> </span>
+
+<!-- get all lessons associated with each part -->
+    <%  LessonPart.where(cosmic_part_id:part.id).each do |p|   %>
+      <span> -> Cosmic Lesson: <%= p.cosmic_lesson.cosmic_domain_order %> </span>
+    <% end %>
+    <ul><!-- get all accents and lessons associated with each part -->
+    <%  CosmicAccent.where(cosmic_part_id: part.id).each do |accent|   %>
+      <li> Accent: [<%= accent.content %>]</li>
+        <!-- list accent content and extra lessons to cover -->
+      <ul> <li>->Lessons covering [accents]:</li>
+        <%  LessonAccent.where(cosmic_accent_id:accent.id).each do |a|   %>
+          <span> -> Cosmic Lesson: <%= a.cosmic_lesson.cosmic_domain_order %> </span>
+        <% end %>
+
+        <li>-> part desc w/accent:  <%= part.desc.gsub!(accent.content, "[" + accent.content + "]")  %></li>
+        </ul>
+    <% end %>
+
   <% end %>
+
+  </ul>
 </ul>
+
 
 
 

@@ -18,7 +18,7 @@ class CosmicAccentsControllerTest < ActionController::TestCase
 
   test "should create cosmic_accent" do
     assert_difference('CosmicAccent.count') do
-      post :create, cosmic_accent: { ccss_math_id: @cosmic_accent.ccss_math_id, content: @cosmic_accent.content, cosmic_lesson_id: @cosmic_accent.cosmic_lesson_id, cosmic_part_id: @cosmic_accent.cosmic_part_id, name: @cosmic_accent.name }
+      post :create, cosmic_accent: { content: @cosmic_accent.content, cosmic_part_id: @cosmic_accent.cosmic_part_id }
     end
 
     assert_redirected_to cosmic_accent_path(assigns(:cosmic_accent))
@@ -35,7 +35,7 @@ class CosmicAccentsControllerTest < ActionController::TestCase
   end
 
   test "should update cosmic_accent" do
-    patch :update, id: @cosmic_accent, cosmic_accent: { ccss_math_id: @cosmic_accent.ccss_math_id, content: @cosmic_accent.content, cosmic_lesson_id: @cosmic_accent.cosmic_lesson_id, cosmic_part_id: @cosmic_accent.cosmic_part_id, name: @cosmic_accent.name }
+    patch :update, id: @cosmic_accent, cosmic_accent: { content: @cosmic_accent.content, cosmic_part_id: @cosmic_accent.cosmic_part_id }
     assert_redirected_to cosmic_accent_path(assigns(:cosmic_accent))
   end
 

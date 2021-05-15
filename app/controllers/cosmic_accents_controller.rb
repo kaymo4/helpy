@@ -69,6 +69,6 @@ class CosmicAccentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cosmic_accent_params
-      params.require(:cosmic_accent).permit(:name, :content, :cosmic_part_id, :cosmic_lesson_id, :ccss_math_id, cosmic_lesson_ids: [])
+      params.require(:cosmic_accent).permit(:content, :cosmic_part_id)
     end
 end

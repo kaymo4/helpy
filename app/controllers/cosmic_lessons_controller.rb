@@ -69,6 +69,6 @@ class CosmicLessonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cosmic_lesson_params
-      params.require(:cosmic_lesson).permit(:seo_key,:ccss_math_id, :cosmic_domain, :cosmic_domain_order, :title_short, :title_long, :overview, :content, :type, :custom1, :custom2, ccss_lessons_ids: [], ccss_math_ids: [])
+      params.require(:cosmic_lesson).permit(:seo_key, :cosmic_domain, :cosmic_domain_order, :title_short, :title_long, :overview, :content)
     end
 end

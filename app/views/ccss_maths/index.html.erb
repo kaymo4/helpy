@@ -31,137 +31,46 @@
           <td><%= ccss_math.standard_id %>
 
 
-
-
-          </td>
-
-
-
-          <td>
-
-            <span>[accents outside parts]: </span>
-
-            <% accent_lessons_all=[] %>
-            <% accent_lessons = CosmicAccent.where(ccss_math_id: ccss_math.id) %>
-            <% accent_lessons.each do |accent_lesson| %>
-              <% @unique_lesson = CosmicLesson.find(accent_lesson.cosmic_lesson_id).cosmic_domain_order %>
-              <% accent_lessons_all.push(@unique_lesson)%>
-            <% end %>
-            <% distinct_accent_lessons=accent_lessons_all.uniq  %>
-            <!--- Cosmic Domain Order #:  -->
-            <% @unique_lesson %> <% accent_lessons_all.length %>  <%distinct_accent_lessons.length %>
-
-            <!--- display all lessons accented or just the one -->
-            <% if distinct_accent_lessons.length>1 %>
-              <span>   Lesson #s: <%=  accent_lessons_all.each { |a|  a }  %></span>
-
-
-            <% else %>
-              <span>     Lesson #: <%= @unique_lesson %></span>
-            <% end %>
-
-
-            <% @unique_lesson = nil %>
-            <% if @std_parts_hashes[ccss_math.id].nil? %>
-              <%= ccss_math.id %>|
-
-              <!-- searching and replacing all existing accents in this standard_desc -->
-
-              <% accent_no_part_contents = CosmicAccent.per_ccss_id_no_part(ccss_math.id) %>
-              <% accent_no_part_contents.each { |accent_no_part_content| ccss_math.standard_desc.gsub!(accent_no_part_content, "[" + accent_no_part_content + "]") } %>
-              <%= ccss_math.standard_desc %>
+          <td ><span style="color:#dddddd"><%= ccss_math.standard_desc %></span>
 
 
 
-            <% else %>
-              <!-- content was split into cosmic parts -->
-              <% accent_contents = CosmicAccent.per_ccss_id_per_part(ccss_math.id) %>
+          <!-- if there are parts created for this standard ? -->
+          <!--TO DO replace standard description by part description -->
 
-              <p style="font-style: italic"> (split into <%= @std_parts_hashes[ccss_math.id] %> parts)</p>
-              <% idx = 0 %><!-- @std_parts_hashes has value-> the number of parts for key -> ccss_math.id -->
-              <% @std_parts_hashes[ccss_math.id].times() do %>
-                <p><span style="font-style: italic">Part  <%= idx + 1 %>:</span>
-                  <% part_content = [] %>
-                  <% part_content[idx] = CosmicPart.per_ccss_id(ccss_math.id)[idx] %>
-                   <!-- searching and replacing all accents in this part -->
-                  <% accent_contents.each { |accent_content| part_content[idx].gsub!(accent_content, "[" + accent_content + "]") } %>
-                  <%= part_content[idx] %>
-                  <% idx = idx + 1 %>
-                </p>
+          <ul>
+            <%  CosmicPart.where(ccss_math_id: ccss_math).each do |part|   %>
+              <li> Part#<%= part.part %>    <span>| <%= part.desc %> </span>
 
-                <!--- what is current part name  -->
-                <!--- what is part name  -->
+                <!-- get all lessons associated with each part -->
+                <%  LessonPart.where(cosmic_part_id:part.id).each do |e|   %>
+                  <span> -> Cosmic Lesson: <%= e.cosmic_lesson_id %> </span>
+                <% end %>
 
-                <!-- look for string Part1 or Part2 etc.. -->
-                <!-- look for string Part1 or Part2 etc.. -->
-                <!-- look for string Part1 or Part2 etc.. -->
-
-                <!-- show additional lessons covering [accents] -->
-                <!------------------------------------------------>
-
-
-
-                <span>[accents in parts]: </span>
-
-                    <% accent_lessons_all=[] %>
-                    <% accent_lessons = CosmicAccent.where(ccss_math_id: ccss_math.id) %>
-                    <% accent_lessons.each do |accent_lesson| %>
-                      <% @unique_lesson = CosmicLesson.find(accent_lesson.cosmic_lesson_id).cosmic_domain_order %>
-                      <% accent_lessons_all.push(@unique_lesson)%>
+                <!-- get all accents and lessons associated with each part -->
+                <%  CosmicAccent.where(cosmic_part_id: part.id).each do |accent|   %>
+                  <li> Accent: <%= accent.content %>
+                    <!-- list accent content and extra lessons to cover -->
+                    ->TO DO Lessons covering [accents]:
+                    <%  LessonAccent.where(cosmic_accent_id:accent.id).each do |a|   %>
+                      <span> -> Cosmic Lesson: <%= a.cosmic_lesson.cosmic_domain_order %> </span>
                     <% end %>
-                    <% distinct_accent_lessons=accent_lessons_all.uniq  %>
-                    <!--- Cosmic Domain Order #:  -->
-                    <% @unique_lesson %> <% accent_lessons_all.length %>  <%distinct_accent_lessons.length %>
-
-                    <!--- display all lessons accented or just the one -->
-                    <% if distinct_accent_lessons.length>1 %>
-                   <span>   Lesson #s: <%=  accent_lessons_all.each { |a|  a }  %></span>
-
-
-                    <% else %>
-                   <span>     Lesson #: <%= @unique_lesson %></span>
-                    <% end %>
+                  </li>
+                <% end %>
 
 
 
-              <!-- loops -->
-              <% end %>
+
+
+
+              </li>
             <% end %>
+          </ul>
+
           </td>
 
-          <td>
-            <!-- show lessons associated with this standard  -->
-
-            <% ccss_math.cosmic_lessons.order(:cosmic_domain_order).each do |lesson| %>
-              <%= lesson.cosmic_domain_order %> |
-            <% end %>
-            </br>
-            <!-- show accent lesson -->
-            [<%= @distinct_accent_lessons  %>]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          </td>
           <td><%= link_to 'Show', ccss_math %></td>
           <td><%= link_to 'Edit', edit_ccss_math_path(ccss_math) %>
           <td><%= link_to 'Destroy', ccss_math, method: :delete, data: { confirm: 'Are you sure?' } %></td>

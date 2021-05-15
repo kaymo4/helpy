@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :lesson_accents
+  resources :lesson_parts
   resources :cosmic_lessons
-  #cosmic ressources
-  resources :cosmic_activities
   resources :cosmic_accents
+  resources :cosmic_parts
+  resources :destroys
   resources :cosmic_parts
   resources :ccss_maths
 

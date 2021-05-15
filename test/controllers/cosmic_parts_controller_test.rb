@@ -18,7 +18,7 @@ class CosmicPartsControllerTest < ActionController::TestCase
 
   test "should create cosmic_part" do
     assert_difference('CosmicPart.count') do
-      post :create, cosmic_part: { ccss_math_id: @cosmic_part.ccss_math_id, content: @cosmic_part.content, cosmic_lesson_id: @cosmic_part.cosmic_lesson_id, name: @cosmic_part.name }
+      post :create, cosmic_part: { ccss: @cosmic_part.ccss, ccss_maths_id: @cosmic_part.ccss_maths_id, part: @cosmic_part.part, std_desc: @cosmic_part.std_desc }
     end
 
     assert_redirected_to cosmic_part_path(assigns(:cosmic_part))
@@ -35,7 +35,7 @@ class CosmicPartsControllerTest < ActionController::TestCase
   end
 
   test "should update cosmic_part" do
-    patch :update, id: @cosmic_part, cosmic_part: { ccss_math_id: @cosmic_part.ccss_math_id, content: @cosmic_part.content, cosmic_lesson_id: @cosmic_part.cosmic_lesson_id, name: @cosmic_part.name }
+    patch :update, id: @cosmic_part, cosmic_part: { ccss: @cosmic_part.ccss, ccss_maths_id: @cosmic_part.ccss_maths_id, part: @cosmic_part.part, std_desc: @cosmic_part.std_desc }
     assert_redirected_to cosmic_part_path(assigns(:cosmic_part))
   end
 

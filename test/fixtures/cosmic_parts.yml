@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  content: MyText
-  cosmic_lesson_id: 
-  ccss_math_id: 
+  part: 1
+  ccss: MyString
+  std_desc: MyText
+  ccss_maths_id: 
 
 two:
-  name: MyString
-  content: MyText
-  cosmic_lesson_id: 
-  ccss_math_id: 
+  part: 1
+  ccss: MyString
+  std_desc: MyText
+  ccss_maths_id: 

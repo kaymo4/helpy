@@ -7,10 +7,10 @@ class CcssMathsController < ApplicationController
     #get all ccss standards
     @ccss_maths = CcssMath.all.order(:id)
     # get intelligence, which standard has parts and how many
-    std_parts = StandardPart.where('nb_of_parts > 0').pluck(:ccss_db_id, :nb_of_parts)
+    #std_parts = StandardPart.where('nb_of_parts > 0').pluck(:ccss_db_id, :nb_of_parts)
     # convert the array to hash with key value, key->ccss_db_id, value ->nb_of_parts
-    @std_parts_hashes = { }
-    std_parts.each { |k, v| @std_parts_hashes[k] = v }
+    #@std_parts_hashes = { }
+    #std_parts.each { |k, v| @std_parts_hashes[k] = v }
     # get all accents with parts
     # used scope in model
     # get joint table info with cosmic lessons

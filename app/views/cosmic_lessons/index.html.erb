@@ -12,9 +12,6 @@
       <th>Title long</th>
       <th>Overview</th>
       <th>Content</th>
-      <th>Type</th>
-      <th>Custom1</th>
-      <th>Custom2</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -29,9 +26,6 @@
         <td><%= cosmic_lesson.title_long %></td>
         <td><%= cosmic_lesson.overview %></td>
         <td><%= cosmic_lesson.content %></td>
-        <td><%= cosmic_lesson.type %></td>
-        <td><%= cosmic_lesson.custom1 %></td>
-        <td><%= cosmic_lesson.custom2 %></td>
         <td><%= link_to 'Show', cosmic_lesson %></td>
         <td><%= link_to 'Edit', edit_cosmic_lesson_path(cosmic_lesson) %></td>
         <td><%= link_to 'Destroy', cosmic_lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>

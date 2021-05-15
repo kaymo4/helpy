@@ -10,16 +10,6 @@ class CreateCcssMaths < ActiveRecord::Migration
       t.string :cluster_id
       t.string :standard_id
       t.string :standard_desc
-      t.string :ccss_id
-      t.string :ccss_typ
-      t.string :domain_id
-      t.string :domain_desc
-      t.string :grade_id
-      t.string :grade_name
-      t.string :cluster_id
-      t.string :standard_id
-      t.text :standard_desc
-
       t.timestamps null: false
     end
   end

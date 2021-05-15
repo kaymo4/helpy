@@ -2,19 +2,11 @@
 
 <h1>Listing Cosmic Accents</h1>
 
-<p>*****************************************************************************</p>
-<p>* WHEN YOU ADD AN ACCENT "CONTENT" IT WILL AUTOMAGICALLY ADD THE LESSON     *</p>
-<p>* WITH BRACKETS IN THE STANDARDS LIST AND LESSON MAPPING REPORT             *</p>
-<p>*****************************************************************************</p>
-
 <table>
   <thead>
     <tr>
-      <th>Name</th>
       <th>Content</th>
-      <th>Cosmic part Name</th>
-      <th>Cosmic lesson</th>
-      <th>Ccss math</th>
+      <th>Cosmic part</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,20 +14,8 @@
   <tbody>
     <% @cosmic_accents.each do |cosmic_accent| %>
       <tr>
-        <td><%= cosmic_accent.name %></td>
         <td><%= cosmic_accent.content %></td>
-        <!-- there may be several accents for a standard or part ! Our procedure is to create another accent as needed -->
-        <td><%= CosmicPart.find_by_ccss_math_id(cosmic_accent.ccss_math_id).name if CosmicPart.find_by_ccss_math_id(cosmic_accent.ccss_math_id).present? %></td>
-        <td><%= CosmicLesson.find(cosmic_accent.cosmic_lesson_id).cosmic_domain_order %></td>
-        <td> <%= CcssMath.find(cosmic_accent.ccss_math_id).ccss_id %></td>
-
-
-
-
-
-
-
-
+        <td><%= cosmic_accent.cosmic_part.ccss %>-Part#<%= cosmic_accent.cosmic_part.part %></td>
 
         <td><%= link_to 'Show', cosmic_accent %></td>
         <td><%= link_to 'Edit', edit_cosmic_accent_path(cosmic_accent) %></td>
