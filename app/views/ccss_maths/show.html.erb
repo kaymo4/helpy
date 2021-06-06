@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<div class="container">
 <p>
   <strong>Id:</strong>
   <%= @ccss_math.id %>
@@ -58,34 +58,143 @@
 <strong>Parts for this standard:</strong>
 
 
+
+
+  <% @std_part = {} %>
+  <% @std_lesson = {} %>
+  <% @part_acc_lesson = {} %>
 <ul>
   <%  CosmicPart.where(ccss_math_id: @ccss_math).each do |part|   %>
+    <!-- @std_part_acc[key] = value-->
+    <% @std_part[part.part]=part.desc %>
   <li> Part#<%= part.part %><span>| <%= part.desc %> </span>
 
 <!-- get all lessons associated with each part -->
     <%  LessonPart.where(cosmic_part_id:part.id).each do |p|   %>
-      <span> -> Cosmic Lesson: <%= p.cosmic_lesson.cosmic_domain_order %> </span>
+      <span> -> Cosmic Lesson: <% @std_lesson[part.part]= p.cosmic_lesson.cosmic_domain_order %> </span>
+      <!-- @std_part_acc[key] = value-->
+      <%= @std_lesson[part.part]  %>
     <% end %>
-    <ul><!-- get all accents and lessons associated with each part -->
+    <!-- get all accents and lessons associated with each part -->
     <%  CosmicAccent.where(cosmic_part_id: part.id).each do |accent|   %>
-      <li> Accent: [<%= accent.content %>]</li>
+      <ul> <li> Accent: [<%= accent.content %>]</li>
         <!-- list accent content and extra lessons to cover -->
-      <ul> <li>->Lessons covering [accents]:</li>
         <%  LessonAccent.where(cosmic_accent_id:accent.id).each do |a|   %>
-          <span> -> Cosmic Lesson: <%= a.cosmic_lesson.cosmic_domain_order %> </span>
+          <span> -> Cosmic Lesson: [
+            <% @lesson_accent_order=a.cosmic_lesson.cosmic_domain_order %>
+            <%= @lesson_accent_order %>
+            ]
+
+            <% @part_acc_lesson[part.part]=@lesson_accent_order %>
+          </span>
         <% end %>
 
-        <li>-> part desc w/accent:  <%= part.desc.gsub!(accent.content, "[" + accent.content + "]")  %></li>
+        <li>-> part desc w/accent:
+          <%= part.desc.gsub!(accent.content, "[" + accent.content + "]")  %>
+
+        </li>
         </ul>
+      </ul>
     <% end %>
 
   <% end %>
 
-  </ul>
+
 </ul>
 
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>Standard Parts and [Accents] </th>
+        <th>Cosmic Lesson</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @std_part.each do  |k,v| %>
+      <tr><td><%= v %></td><td>
+        <%= @std_lesson[k] %>,
+        <% if @part_acc_lesson[k].present? %> [<%= @part_acc_lesson[k] %>] <% end %>
 
 
 
+
+
+      </td>
+      </tr>
+        <% end %>
 <%= link_to 'Edit', edit_ccss_math_path(@ccss_math) %> |
 <%= link_to 'Back', ccss_maths_path %>
+  </td>
+  </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>CCSS Standard - Cosmic Parts and [Accents] </th>
+        <th colspan="5">Math Cosmic Lessons</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <% @std_part.each do  |k,v| %>
+        <tr><td>
+          <!-- standard description with parts and accents -->
+          <%= v %></td>
+          <!-- loop through columns to show related lessons  -->
+          <td>
+          <% if @std_lesson[k] == 1 %>
+              #<%= @std_lesson[k] %>
+          <% end %>
+
+          <% if @part_acc_lesson[k].present? %>
+              <% if  @part_acc_lesson[k] == 1 %>
+              [#<%= @part_acc_lesson[k] %>]
+              <% end %>
+            <% end %>
+        </td>
+
+          <td>
+            <% if @std_lesson[k] == 2 %>
+              #<%= @std_lesson[k] %>
+            <% end %>
+
+            <% if @part_acc_lesson[k].present? %>
+              <% if  @part_acc_lesson[k] == 2 %>
+                [#<%= @part_acc_lesson[k] %>]
+              <% end %>
+            <% end %>
+          </td>
+
+          <td>
+            <% if @std_lesson[k] == 3 %>
+              #<%= @std_lesson[k] %>
+            <% end %>
+
+            <% if @part_acc_lesson[k].present? %>
+              <% if  @part_acc_lesson[k] == 3 %>
+                [#<%= @part_acc_lesson[k] %>]
+              <% end %>
+            <% end %>
+          </td>
+
+
+
+
+        </tr>
+      <% end %>
+      <%= link_to 'Edit', edit_ccss_math_path(@ccss_math) %> |
+      <%= link_to 'Back', ccss_maths_path %>
+      </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+</div>
