@@ -3,11 +3,13 @@
 
   <div class="form-inputs">
     <%= f.input :content %>
-    <%= f.association :cosmic_part, label_method:
+
+    <%= f.association :cosmic_part, as: :radio_buttons,
+    label_method:
 
       lambda {
 
-        |cosmic| "#{cosmic.ccss} - Part# #{cosmic.part}"
+        |cosmic| "#{cosmic.ccss} - Part# #{cosmic.part} - #{cosmic.desc} "
 
       } %>
   </div>

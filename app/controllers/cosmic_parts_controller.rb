@@ -69,6 +69,6 @@ class CosmicPartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cosmic_part_params
-      params.require(:cosmic_part).permit(:part, :ccss, :desc, :ccss_math_id)
+      params.require(:cosmic_part).permit(:part, :ccss, :desc, :ccss_math_id, :cosmic_lesson_id)
     end
 end

@@ -5,6 +5,8 @@
 <table>
   <thead>
     <tr>
+      <th>Cosmic Lesson</th>
+      <th>Cosmic Part Description </th>
       <th>Content</th>
       <th>Cosmic part</th>
       <th colspan="3"></th>
@@ -14,6 +16,13 @@
   <tbody>
     <% @cosmic_accents.each do |cosmic_accent| %>
       <tr>
+
+        <td><%= cosmic_accent.cosmic_part.cosmic_lesson.cosmic_domain_order %></td>
+        <td><%= cosmic_accent.cosmic_part.desc.gsub!(cosmic_accent.content, "[" + cosmic_accent.content + "]") %></td>
+
+
+
+
         <td><%= cosmic_accent.content %></td>
         <td><%= cosmic_accent.cosmic_part.ccss %>-Part#<%= cosmic_accent.cosmic_part.part %></td>
 

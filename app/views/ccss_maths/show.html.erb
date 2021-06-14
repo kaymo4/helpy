@@ -182,6 +182,31 @@
             <% end %>
           </td>
 
+          <td>
+            <% if @std_lesson[k] == 4 %>
+              #<%= @std_lesson[k] %>
+            <% end %>
+
+            <% if @part_acc_lesson[k].present? %>
+              <% if  @part_acc_lesson[k] == 4 %>
+                [#<%= @part_acc_lesson[k] %>]
+              <% end %>
+            <% end %>
+          </td>
+
+          <td>
+            <% if @std_lesson[k] == 5 %>
+              #<%= @std_lesson[k] %>
+            <% end %>
+
+            <% if @part_acc_lesson[k].present? %>
+              <% if  @part_acc_lesson[k] == 5 %>
+                [#<%= @part_acc_lesson[k] %>]
+              <% end %>
+            <% end %>
+          </td>
+
+
 
 
 

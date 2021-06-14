@@ -10,5 +10,19 @@
   <%= @cosmic_accent.cosmic_part.ccss %> -Part# <%= @cosmic_accent.cosmic_part.part %>
 </p>
 
+<p>
+  <strong>Cosmic part content:</strong>
+
+
+  <%= @cosmic_accent.cosmic_part.desc.gsub!(@cosmic_accent.content, "[" + @cosmic_accent.content + "]")  %>
+
+</p>
+
+<p>
+  <strong>Cosmic Lesson:</strong>
+  <%= @cosmic_accent.cosmic_part.cosmic_lesson.cosmic_domain_order %>
+</p>
+
+
 <%= link_to 'Edit', edit_cosmic_accent_path(@cosmic_accent) %> |
 <%= link_to 'Back', cosmic_accents_path %>

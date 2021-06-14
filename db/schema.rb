@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210515121128) do
+ActiveRecord::Schema.define(version: 20210614043512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,11 +135,13 @@ ActiveRecord::Schema.define(version: 20210515121128) do
     t.string   "ccss"
     t.text     "desc"
     t.integer  "ccss_math_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "cosmic_lesson_id"
   end
 
   add_index "cosmic_parts", ["ccss_math_id"], name: "index_cosmic_parts_on_ccss_math_id", using: :btree
+  add_index "cosmic_parts", ["cosmic_lesson_id"], name: "index_cosmic_parts_on_cosmic_lesson_id", using: :btree
 
   create_table "doc_translations", force: :cascade do |t|
     t.integer  "doc_id",           null: false
@@ -445,6 +447,7 @@ ActiveRecord::Schema.define(version: 20210515121128) do
 
   add_foreign_key "cosmic_accents", "cosmic_parts"
   add_foreign_key "cosmic_parts", "ccss_maths"
+  add_foreign_key "cosmic_parts", "cosmic_lessons"
   add_foreign_key "lesson_accents", "cosmic_accents"
   add_foreign_key "lesson_accents", "cosmic_lessons"
   add_foreign_key "lesson_parts", "cosmic_lessons"
